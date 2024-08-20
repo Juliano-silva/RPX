@@ -15,16 +15,12 @@ function Enviar(){
         document.getElementById("Chat_Conteudo").value
     )
 
-    alert("Conteudo Adicionado")
+    location.reload()
 
-    fetch(Commits,{
-        method:"POST",
-        headers:{
-            "Accept":"application/json, text/plain, */*",
-            "Content-Type":"application/json"
-        },
-        body: JSON.stringify({Title:ConteudoAdd.title,Image:ConteudoAdd.img,Conteudos:ConteudoAdd.conteudo})
+    $.ajax({
+        url:Commits,
+        type:"POST",
+        contentType: "application/json",
+        data: JSON.stringify({Title:ConteudoAdd.title,Image:ConteudoAdd.img,Conteudos:ConteudoAdd.conteudo})
     })
-    .then(res => res.json())
-    .then(res => console.log(res))
 }

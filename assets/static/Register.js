@@ -12,7 +12,7 @@ class Register{
 function Registar(){
     const RegistarLogin = new Register(document.getElementById("nome").value,document.getElementById("senha").value)    
     localStorage.setItem("Register",true)
-
+    location.reload()
     fetch(Registar_LINK,{
         method:"POST",
         headers:{
@@ -38,6 +38,7 @@ function Login(){
                     alert("BEM VINDO AO RPX")
                     localStorage.setItem("Login",true)
                     location.href = "../templates/Feed.html"
+                    location.reload()
                 }else{
                     alert("Nome ou Senha Errada")
                 }
