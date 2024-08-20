@@ -3,10 +3,10 @@ function Main(){
     var Sidebar = document.getElementById("Sidebar")
     var Login = localStorage.getItem("Login")
     if(Login == "true"){
-        Rota.src = "../templates/Feed.html"
+        Rota.src = "./assets/templates/Feed.html"
         Sidebar.style.display = "block"
     }else{
-        Rota.src = "../templates/Register.html"
+        Rota.src = "./assets/templates/Register.html"
         Sidebar.style.display = "none"
     }
 }
