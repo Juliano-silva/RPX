@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RPX</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="./assets/static/style.css">
-
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="Sidebar">
-        <h1>Sidebar</h1>
-        <a href="./assets/templates/Feed.html" target="Rota_Principal">Feed</a>
-        <a href="./assets/templates/Adicionar.html" target="Rota_Principal">Adicionar</a>
-    </div>
-    <iframe id="Src" src="./assets/templates/Feed.html" name="Rota_Principal" frameborder="0"></iframe>
+    <input type="text" id="Titulo" placeholder="Titulo">
+    <input type="text" id="Image" placeholder="Insira uma URL">
+    <input type="text" placeholder="Digite alguma coisa" id="Texto">
+    <button onclick="Clickar()">Click</button>
+    <div id="Conteudo"></div>
 </body>
-<!-- <script src="./assets/static/main.js"></script> -->
+<script src="./static/js/main.js"></script>
 </html>
