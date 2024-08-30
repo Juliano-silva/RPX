@@ -12,17 +12,18 @@ var Link = "https://rpgx-d4ee3-default-rtdb.firebaseio.com/Adicionar/.json"
 
 export default {
     methods: {
-        Clickar() {
+        Clickar() {            
             var Texto = document.getElementById("Texto").value
             var Titulo = document.getElementById("Titulo").value
             var Image = document.getElementById("Image").value
+            var User = JSON.parse(localStorage.getItem("Register")).User
             fetch(Link, {
                 method: "POST",
                 headers: {
                     'Accept': 'application/json, text/plain, */*',
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ Titulo: Titulo, Image: Image, Conteudo: Texto })
+                body: JSON.stringify({ Titulo: Titulo, Image: Image, Conteudo: Texto,User:User })
             })
                 .then(res => res.json())
                 .then(res => console.log(res))
