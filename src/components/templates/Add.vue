@@ -1,8 +1,8 @@
 <template>
-    <input type="text" id="Titulo" placeholder="Titulo">
-    <input type="text" id="Image" placeholder="Insira uma URL">
-    <input type="text" placeholder="Digite alguma coisa" id="Texto">
-    <button v-on:click="Clickar">Click</button>
+    <input type="text" class="Input_Default" id="Titulo" placeholder="Titulo">
+    <input type="text" class="Input_Default" id="Image" placeholder="Insira uma URL">
+    <input type="text" class="Input_Default" placeholder="Digite alguma coisa" id="Texto">
+    <button class="button_Default" v-on:click="Clickar">Click</button>
     <div id="Conteudo"></div>
 </template>
 

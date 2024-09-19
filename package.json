@@ -9,7 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "ckeditor5": "^43.1.0",
+    "pdfjs-dist": "^4.6.82",
     "vue": "^3.4.37",
+    "vue-pdf": "^4.3.0",
     "vue-router": "^4.4.3"
   },
   "devDependencies": {

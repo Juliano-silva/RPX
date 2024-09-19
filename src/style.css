@@ -3,17 +3,87 @@
   padding: 0;
 }
 
-body{
-  background-color: #252525;
+body {
+  width: 100%;
+  height: 100vh;
+  -moz-background-size: 100% 100%;
+  -o-background-size: 100% 100%;
+  -webkit-background-size: 100% 100%;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
   color: white;
 }
 
-#Sidebar{
-  background-color: #270707;
+
+body::before {
+  content: '';
+  background-color: rgba(0, 0, 0, 0.40);
+  top: 0;
   position: fixed;
+  height: 100vh;
+  width: 100%;
+  z-index: -1;
+}
+
+.button_Default{
+  all: unset;
+  display: block;
+  margin: auto;
+  margin-top: 2vh;
+  background-color: #0a0606;
+  border: 0.2vh solid yellow;
+  padding: 1vh;
   width: 10%;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 2vh;
+}
+
+.Input_Default{
+  all: unset;
+  border-bottom: 0.2vh solid white;
+  display: block;
+  width: 40%;
+  padding-bottom: 0.2vh;
+  margin: auto;
+  text-align: center;
+  margin-top: 4vh;
+  background-color: #252525;
+}
+
+input::placeholder{
+}
+
+#Body{
+  height: 100vh;
+  width: 100%;
+  z-index: 0;
+}
+
+#Sidebar{
+  background-color: #110e0e;
+  position: fixed;
+  width: 16%;
+  border-radius: 0.5vh 0 0 0.5vh;
   height: 100vh;
   right: 0;
+  top: 0;
+  z-index: 1;
+}
+
+
+#Click_Menu{
+  all: unset;
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin-top: 0.5vh;
+  margin-right: 2vh;
+  font-size: 6vh;
+  cursor: pointer;
+  z-index: 2;
 }
 
 #Sidebar > a{
@@ -21,8 +91,123 @@ body{
   text-decoration: none;
   display: block;
   padding: 2vh;
+  font-size: 3vh;
+  text-align: left;
   cursor: pointer;
 }
+
 #Sidebar > a:hover{
   color: yellow;
+}
+
+#Conteudo{
+  position: relative;
+}
+
+#Conteudo > div{
+  border: 0.2vh solid wheat;
+  background-color: #0a0808;
+  border-radius: 2vh;
+  width: 60%;
+  height: 80vh;
+  display: block;
+  margin: auto;
+  text-align: center;
+  padding: 1vh;
+  margin-top: 2vh;
+
+}
+
+#Objeto_Image{
+  width: 80%;
+  height: 80%;
+  display: block;
+  margin: auto;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50%;
+}
+
+iframe{
+  width: 50%;
+  height: 100vh;
+}
+
+#Editar_Conteudo{
+  display: none;
+  position: fixed;
+  background-color: #0a0606;
+  top: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100vh;
+}
+
+/* Perfil */
+
+#Caixa_Perfil{
+  text-align: center;
+}
+
+#Edit_Btn{
+  all: unset;
+}
+
+#Edit_Btn > img{
+  width: 4vh;
+  cursor: pointer;
+  height: 4vh;
+  position: fixed;
+  padding: 2vh;
+}
+
+#Caixa_Perfil > img{
+  width: 50vh;
+  height: 50vh;
+  margin-top: 4vh;
+  border-radius: 50%;
+}
+
+#Caixa_Perfil > h1{
+  font-size: 5vh;
+  margin-top: 2vh;
+}
+
+#Caixa_Perfil > p{
+  font-size: 2vh;
+  width: 40%;
+  text-align: center;
+  display: block;
+  margin: auto;
+  margin-top: 1vh;
+}
+
+/* Configuration */
+.Caixa_Style{
+  width: 40vh;
+  padding: 2vh;
+  border: 0.2vh solid white;
+  margin-top: 2vh;
+}
+
+.Caixa_Style > img{
+  width: 100%;
+  height: 100%;
+}
+
+/* Rpg Jogar */
+
+#Conteudo_Person{
+  display: flex;
+}
+
+#Conteudo_Person > div{
+  text-align: center;
+}
+
+#Conteudo_Person > div > img{
+  width: 50%;
+  height: 50%;
+  display: block;
+  margin: auto;
 }

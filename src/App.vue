@@ -7,30 +7,37 @@
   </div>
 
   <div id="Login_Register">
+    <button id="Click_Menu" v-on:click="Menu_Config">☰</button>
     <div id="Sidebar">
       <router-link to="/">Home</router-link>
-      <router-link to="/Adicionar">Adicionar</router-link>
-      <router-link to="/Fama">Hall da Fama</router-link>
-      <router-link to="/Group">Group</router-link>
       <router-link to="/Perfil">Perfil</router-link>
       <router-link to="/Config">Configurações</router-link>
+      <router-link to="/Rpg">Rpg</router-link>
     </div>
-    <router-view></router-view>
+    <div id="Body">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import Add from './components/templates/Add.vue';
 import Home from './components/templates/Home.vue';
 var Link = "https://rpgx-d4ee3-default-rtdb.firebaseio.com/Register/.json"
 
 
 export default {
-
   mounted() {
     this.Loads()
   },
   methods: {
+    Menu_Config(){
+      var Sidebar = document.getElementById("Sidebar")
+      if(getComputedStyle(Sidebar).display == "block"){
+        Sidebar.style.display = "none"
+      }else if(getComputedStyle(Sidebar).display == "none"){
+        Sidebar.style.display = "block"
+      }
+    },
     Loads() {
       if(localStorage.Register){
         document.getElementById("Logins").style.display = "none"
