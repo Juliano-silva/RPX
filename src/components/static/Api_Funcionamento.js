@@ -1,4 +1,5 @@
 // Parte da API
+var API_PERSONAGEM = JSON.parse(localStorage.getItem("Personagens_Rpg"))
 
 // Class
 
@@ -96,20 +97,19 @@ export function Rolar_Dados(Conteudos, Dados_Input) {
     var Conteudo = document.getElementById(Conteudos)
     var String_Dados = String(Dados_Input)
     var Option_Dados = ""
-    var Resultado = 0
     var Dados = document.createElement("h2")
 
     if (String_Dados.indexOf("#d") !== -1) {
         Option_Dados = String_Dados.split("#d")
+        for(var i = 0; i < Option_Dados[0]; i++){
+            var Random_Dados = Math.floor(Math.random() * Option_Dados[1])
+            Dados.innerText = `${Random_Dados} ⟵ [${Random_Dados}] 1d${Option_Dados[1]}`
+        }
     } else if (String_Dados.indexOf("d") !== -1) {
         Option_Dados = String_Dados.split("d")
-    }
-
-    for (var i = 0; i < Option_Dados[0]; i++) {
         var Random_Dados = Math.floor(Math.random() * Option_Dados[1])
-        Dados.innerText = `[${i}] - ${Random_Dados}`
+        Dados.innerText = `${Random_Dados} ⟵ [${Random_Dados}] ${String_Dados}`
     }
-
     Conteudo.append(Dados)
 }
 
@@ -117,45 +117,54 @@ export function Rolar_Dados(Conteudos, Dados_Input) {
 
 var Daddos = []
 
-export function Criar_Personagem(Dados, Personagem, Icon) {
-    if (localStorage.AddDados) {
-        Daddos = JSON.parse(localStorage.getItem("AddDados"))
+export function Criar_Personagem(Dados, Personagem, Icon,File) {
+    console.log(File);
+    
+    if (localStorage.Personagens_Rpg) {
+        Daddos = JSON.parse(localStorage.getItem("Personagens_Rpg"))
     }
 
     Daddos.push({
         "Personagem": Personagem,
         "Icon": Icon,
-        "Dados": Dados
+        "Dados": Dados,
+        "File":File
     })
 
-    localStorage.setItem("AddDados", JSON.stringify(Daddos))
+    localStorage.setItem("Personagens_Rpg", JSON.stringify(Daddos))
 }
 
-var API_PERSONAGEM = JSON.parse(localStorage.getItem("AddDados"))
+var itens = []
 
 function Func_Remove_Edit() {
-    location.reload()
     var func;
-    if (localStorage.getItem("AddDados") == null) {
+    if (localStorage.getItem("Personagens_Rpg") == null) {
         func = []
     } else {
-        func = JSON.parse(localStorage.getItem("AddDados"))
+        func = JSON.parse(localStorage.getItem("Personagens_Rpg"))
     }
+
+    itens.push({
+        "Arma_Nome": document.getElementById("nameid").value,
+        "Imagem": document.getElementById("image").value,
+        "Description": document.getElementById("description").value,
+        "Dado": document.getElementById("Dadosid").value,
+    })
+
     if (this.className == "Edit") {
         func[this.id] = ({
-            "Personagem": "Nioh",
-            "Iniciativa": "4d25",
-            "Imagem": "Add",
+            "Personagem": document.getElementById("nameEdit").value,
+            "Iniciativa": document.getElementById("iniciativaEdit").value,
+            "Imagem": document.getElementById("ImageEdit").value,
+            "Ficha_RPG": document.getElementById("fichaEdit").value,
             "Armas": {
-                "Arma_Nome": "Blood Moon",
-                "Imagem": "Img",
-                "Dado": "2d25",
+                itens
             }
         })
     } else if (this.className == "Delete") {
         func.splice(this.id, 1)
     }
-    localStorage.setItem("AddDados", JSON.stringify(func))
+    localStorage.setItem("Personagens_Rpg", JSON.stringify(func))
 }
 
 export function Aparecer_Personagem() {
@@ -166,38 +175,63 @@ export function Aparecer_Personagem() {
         var Image = document.createElement("img")
         var Editar = document.createElement("button")
         var Remover = document.createElement("button")
+        var Visualizar = document.createElement("button")
         Titulo.innerText = API_PERSONAGEM[i].Personagem
-        Image.src = "https://i.pinimg.com/564x/6c/b6/dc/6cb6dca51a9d1b915fb64c524384ea6c.jpg"
+        Image.src = API_PERSONAGEM[i].Icon
         Dado.innerText = API_PERSONAGEM[i].Dados
         Editar.innerText = "Editar"
         Editar.id = i
-        Editar.className = "Edit"
+        Visualizar.id = i
+        Visualizar.innerText = "Visualizar"
         Remover.innerText = "Remover Conteudo"
         Remover.id = i
         Remover.className = "Delete"
+        Caixa.id = "Caixa_Personagem"
         Remover.addEventListener("click", Func_Remove_Edit)
+
+        Visualizar.addEventListener("click",function(){
+            document.getElementById("Visualizador_Conteudo").style.display = "block"
+                var Caixa = document.createElement("div")
+                var Name = document.createElement("h1")
+                var Dados = document.createElement("h4")
+                var Image = document.createElement("img")
+                var Ficha = document.createElement("iframe")
+
+                Name.innerText = API_PERSONAGEM[this.id].Personagem
+                Dados.innerText = API_PERSONAGEM[this.id].Dados
+                Image.src =  API_PERSONAGEM[this.id].Icon
+                Ficha.src = API_PERSONAGEM[this.id].File
+                Caixa.append(Name,Daddos,Image,Ficha)
+                document.getElementById("Visualizador_Conteudo").append(Caixa)
+        })
+
         Editar.addEventListener("click", function () {
             location.href = `#${this.id}`
             document.getElementById("Editar_Conteudo").style.display = "block"
             document.getElementById("Editar_Conteudo").innerHTML = `
-                <input type="text" placeholder="name" id="name">
-                <input type="text" placeholder="image" id="Image">
-                <input type="text" placeholder="iniciativa" id="iniciativa">
+                <input type="text" placeholder="Insira o nome" id="nameEdit">
+                <input type="text" placeholder="Insira a image" id="ImageEdit">
+                <input type="text" placeholder="Insira a iniciativa" id="iniciativaEdit">
+                <input type="file" id="fichaEdit">
                 <div id="Add_button">
-                        <input type="text" id="nameid">
-                        <input type="text" id="image">
-                        <textarea id="description"></textarea>
-                        <input type="text" id="Dadosid">    
+                        <input type="text" placeholder="Nome Item" id="nameid">
+                        <input type="text" placeholder="Imagem Item" id="image">
+                        <textarea id="description" placeholder="Descrição Item"></textarea>
+                        <input type="text" placeholder="Dados Item" id="Dadosid">    
                 </div>
             `
             var Add = document.createElement("button")
             Add.innerText = "Editar conteudo"
             Add.id = 0
+            Add.className = "Edit"
             Add.addEventListener("click", Func_Remove_Edit)
             document.getElementById("Editar_Conteudo").append(Add)
         })
-        Caixa.append(Titulo, Image, Dado, Editar, Remover)
-        document.getElementById("Conteudo_Person").append(Caixa)
+        Caixa.append(Titulo, Image, Dado,Visualizar, Editar, Remover)
+        document.getElementById("Personagens_Body").append(Caixa)
     }
 }
 
+export function Adicionar_Personagens(){
+    document.getElementById("Adicionar_Personagens").style.display = "block"
+}

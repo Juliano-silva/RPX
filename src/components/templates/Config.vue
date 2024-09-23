@@ -32,11 +32,14 @@ export default {
                 var Escolha = document.createElement("button")
                 Caixa.className = "Caixa_Style"
                 Caixa.id = `Caixa_Style${i}`
-                Escolha.id = i
+                Escolha.id = i                
                 Titulo.innerText = Carregar[i].Name
                 font.innerText = Carregar[i].Font
                 img.src = Carregar[i].Background
                 Escolha.innerText = "Escolher"
+                Escolha.addEventListener("click",function(){
+                    localStorage.setItem("Escolher_Background",this.id)
+                })
                 Caixa.append(Titulo,img,font,Escolha)
                 document.getElementById("Config_Conteudo").append(Caixa)
             }

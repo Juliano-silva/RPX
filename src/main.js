@@ -23,7 +23,8 @@ const router = createRouter({
 // Background Escolha
 if(localStorage.Configuration){
     var Buscar = JSON.parse(localStorage.getItem("Configuration"))
-    document.querySelector("body").style.backgroundImage = `url(${Buscar[0].Background})`
+    var Busscar2 = JSON.parse(localStorage.getItem("Escolher_Background"))
+    document.querySelector("body").style.backgroundImage = `url(${Buscar[Busscar2].Background})`
 }
 
 createApp(App).use(router).mount('#app')
